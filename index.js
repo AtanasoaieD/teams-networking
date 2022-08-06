@@ -1,16 +1,16 @@
 function getTeamHTML(team) {
-  return;
-  ` <tr>
-  <td>${team.promotion}</td>
-  <td>${team.members}</td>
-  <td>${team.name}</td>
-  <td>
-    <a href="${team.url}"
-      >github</a
-    >
-  </td>
-  <td>x e</td>
-</tr>`;
+  return `
+  <tr>
+    <td>${team.promotion}</td>
+    <td>${team.members}</td>
+    <td>${team.name}</td>
+    <td>
+      <a href="${team.url}"
+        >github</a
+      >
+    </td>
+    <td>x e</td>
+  </tr>`;
 }
 
 function displayTeams(teams) {
