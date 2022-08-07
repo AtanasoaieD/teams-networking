@@ -20,11 +20,7 @@ function displayTeams(teams) {
   //     teamsHTML += getTeamHTML(team);
   //   });
 
-  var teamsHTML = teams.map(function (team) {
-    console.info(team);
-    return getTeamHTML(team);
-  });
-  console.warn("teamsHTML", teamsHTML);
+  var teamsHTML = teams.map(getTeamHTML);
 
   document.querySelector("table tbody").innerHTML = teamsHTML.join("");
 }
@@ -32,7 +28,6 @@ function displayTeams(teams) {
 function loadTeams() {
   fetch("data/teams.json")
     .then(function (r) {
-      console.info(r);
       return r.json();
     })
     .then(function (teams) {
