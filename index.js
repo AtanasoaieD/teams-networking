@@ -34,14 +34,18 @@ function loadTeams() {
     });
 }
 
+function $(selector) {
+  return document.querySelector(selector);
+}
+
 function submitForm(e) {
   e.preventDefault();
-  var promotion = document.querySelector("input[name=promotion]").value;
-  var members = document.querySelector("input[name=members]").value;
-  var name = document.querySelector("input[name=name]").value;
-  var url = document.querySelector("input[name=url]").value;
+  const promotion = $("input[name=promotion]").value;
+  const members = $("input[name=members]").value;
+  const name = $("input[name=name]").value;
+  const url = $("input[name=url]").value;
 
-  var team = {
+  const team = {
     promotion: promotion,
     members: members,
     name: name,
@@ -52,7 +56,7 @@ function submitForm(e) {
 }
 
 function initEvents() {
-  var form = document.getElementById("editForm");
+  const form = document.getElementById("editForm");
   form.addEventListener("submit", submitForm);
 }
 loadTeams();
