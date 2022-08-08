@@ -5,35 +5,55 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Mouse+Memoirs&family=Nunito:ital@1&family=Oswald&family=Poppins:wght@300&family=Roboto+Slab:wght@400;500&family=Roboto:wght@300&display=swap"
+      rel="stylesheet"
+    />
 
     <title>Table</title>
     <h1>Teams Networking</h1>
   </head>
   <body>
-    <table border="1">
-      <thead>
-        <tr>
-          <th>Group</th>
-          <th>Members</th>
-          <th>Project Name</th>
-          <th>Project URL</th>
-        </tr>
-      </thead>
+    <form action="" method="post" id="editForm">
+      <table border="1">
+        <thead id="head">
+          <tr>
+            <th>Group</th>
+            <th>Members</th>
+            <th>Project Name</th>
+            <th>Project URL</th>
+          </tr>
+        </thead>
 
-      <tbody>
-        <tr>
-          <td>won8</td>
-          <td>noi</td>
-          <td>CV</td>
+        <tbody></tbody>
+        <tfoot>
           <td>
-            <a href="https://github.com/AtanasoaieD/AtanasoaieD.github.io"
-              >github</a
-            >
+            <input
+              type="text"
+              placeholder="enter group"
+              name="promotion"
+              required
+            />
           </td>
-          <td>x e</td>
-        </tr>
-      </tbody>
-    </table>
+          <td>
+            <input
+              type="text"
+              placeholder="enter members"
+              name="members"
+              required
+            />
+          </td>
+          <td>
+            <input type="text" placeholder="enter name" name="name" required />
+          </td>
+          <td>
+            <input type="text" placeholder="enter url" name="url" required />
+          </td>
+          <td><button type="submit">💾</button></td>
+        </tfoot>
+      </table>
+    </form>
     <script src="index.js"></script>
   </body>
 </html>
