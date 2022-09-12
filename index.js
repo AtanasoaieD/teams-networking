@@ -9,10 +9,12 @@ function getTeamHTML(team) {
     <td>${team.members}</td>
     <td>${team.name}</td>
     <td>
-      <a href="${team.url}"
-        >open</a>
+      <a href="${team.url}" target="_blank">open</a>
+        
     </td>
-    <td>x e</td>
+    <td>
+    <a href = "#" data-id="${team.id}" class="delete-btn"> ❌ </a>
+    </td>
   </tr>`;
 }
 
@@ -45,6 +47,16 @@ function createTeamRequest(team) {
     body: JSON.stringify(team),
   });
 }
+function removeTeamRequest(id) {
+  console.warn("remove", id);
+  return fetch("http://localhost:3000/teams-json/delete", {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ id: id }),
+  }).then((r) => r.json());
+}
 
 function submitForm(e) {
   e.preventDefault();
@@ -73,6 +85,18 @@ function submitForm(e) {
 function initEvents() {
   const form = document.getElementById("editForm");
   form.addEventListener("submit", submitForm);
+  form.querySelector("tbody").addEventListener("click", (e) => {
+    console.warn("click", e.target);
+    if (e.target.matches("a.delete-btn")) {
+      const id = e.target.getAttribute("data-id");
+      removeTeamRequest(id).then((status) => {
+        console.warn("status", status);
+        if (status.succes) {
+          loadTeams();
+        }
+      });
+    }
+  });
 }
 loadTeams();
 initEvents();
