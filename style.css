@@ -3,10 +3,21 @@ table {
 }
 
 #head {
-  background-color: grey;
+  background-color: rgb(234, 199, 225);
   font-family: "Oswald", sans-serif;
+}
+body {
+  background-image: linear-gradient(to right, rgb(59, 50, 50), white);
+}
+h1 {
+  color: rgb(215, 236, 236);
 }
 tbody {
   font-family: "Oswald", sans-serif;
   text-align: center;
+  background-image: linear-gradient(
+    to right,
+    rgb(244, 67, 191),
+    rgb(240, 240, 112)
+  );
 }
