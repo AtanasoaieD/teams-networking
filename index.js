@@ -26,13 +26,14 @@ function displayTeams(teams) {
   const teamsHTML = teams.map(getTeamHTML);
 
   //afisare
-  document.querySelector("table tbody").innerHTML = teamsHTML.join("");
+  $("table tbody").innerHTML = teamsHTML.join("");
 }
 
 function loadTeams() {
   fetch("http://localhost:3000/teams-json")
     .then((r) => r.json())
     .then((teams) => {
+      allTeams = teams;
       displayTeams(teams);
     });
 }
@@ -44,8 +45,9 @@ function createTeamRequest(team) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(team),
-  });
+  }).then((r) => r.json());
 }
+
 function removeTeamRequest(id) {
   return fetch("http://localhost:3000/teams-json/delete", {
     method: "DELETE",
@@ -53,6 +55,16 @@ function removeTeamRequest(id) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ id: id }),
+  }).then((r) => r.json());
+}
+
+function updateTeamRequest(team) {
+  return fetch("http://localhost:3000/teams-json/update", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(team),
   }).then((r) => r.json());
 }
 
@@ -76,21 +88,27 @@ function setFormValues(team) {
   $("input[name=name]").value = team.name;
   $("input[name=url]").value = team.url;
 }
+
 function submitForm(e) {
   e.preventDefault();
 
   const team = getFormValues();
+  
   if (editId) {
-    console.warn("pls edit", editId, team);
+    team.id = editId;
+    updateTeamRequest(team).then((status) => {
+      if (status.succes) {
+        $("#editForm").reset();
+        loadTeams();
+      }
+    });
   } else {
-    createTeamRequest(team)
-      .then((r) => r.json())
-      .then((status) => {
-        console.warn("status", status);
-        if (status.success) {
-          location.reload();
-        }
-      });
+    createTeamRequest(team).then((status) => {
+      if (status.success) {
+        $("#editForm").reset();
+        loadTeams();
+      }
+    });
   }
 }
 
@@ -101,9 +119,12 @@ function startEditTeam(id) {
 }
 
 function initEvents() {
-  const form = document.getElementById("editForm");
+  const form = $("#editForm");
   form.addEventListener("submit", submitForm);
-
+  form.addEventListener("reset", () => {
+    console.warn("reset");
+    editId = undefined;
+  });
   form.querySelector("tbody").addEventListener("click", (e) => {
     if (e.target.matches("a.delete-btn")) {
       const id = e.target.getAttribute("data-id");
