@@ -21,3 +21,12 @@ tbody {
     rgb(240, 240, 112)
   );
 }
+#editForm tfoot input [type="text"] {
+  width: 100%;
+}
+input:not([type="image" i]) {
+  box-sizing: border-box;
+}
+
+.selectAll {
+}
