@@ -33,6 +33,7 @@ function loadTeams() {
   fetch("http://localhost:3000/teams-json")
     .then((r) => r.json())
     .then((teams) => {
+      loadTeams = teams;
       allTeams = teams;
       displayTeams(teams);
     });
@@ -93,7 +94,7 @@ function submitForm(e) {
   e.preventDefault();
 
   const team = getFormValues();
-  
+
   if (editId) {
     team.id = editId;
     updateTeamRequest(team).then((status) => {
@@ -119,10 +120,21 @@ function startEditTeam(id) {
 }
 
 function initEvents() {
+  $("#search").addEventListener("input", (e) => {
+    const search = e.target.value.toLowerCase();
+    console.info(search);
+    const teams = allTeams.filter((team) => {
+      console.info("filter", team);
+      return team.promotion.toLowerCase().includes(search);
+    });
+    console.info(teams);
+    displayTeams(teams);
+  });
   const form = $("#editForm");
   form.addEventListener("submit", submitForm);
   form.addEventListener("reset", () => {
-    console.warn("reset");
+    let reset = 0;
+    console.warn("reset", reset++);
     editId = undefined;
   });
   form.querySelector("tbody").addEventListener("click", (e) => {
