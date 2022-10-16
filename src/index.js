@@ -31,8 +31,8 @@ function displayTeams(teams) {
 
 function loadTeams() {
   fetch("http://localhost:3000/teams-json")
-    .then((r) => r.json())
-    .then((teams) => {
+    .then(r => r.json())
+    .then(teams => {
       loadTeams = teams;
       allTeams = teams;
       displayTeams(teams);
@@ -43,30 +43,31 @@ function createTeamRequest(team) {
   return fetch("http://localhost:3000/teams-json/create", {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": "application/json"
     },
-    body: JSON.stringify(team),
-  }).then((r) => r.json());
+    body: JSON.stringify(team)
+  }).then(r => r.json());
 }
 
 function removeTeamRequest(id) {
   return fetch("http://localhost:3000/teams-json/delete", {
     method: "DELETE",
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": "application/json"
     },
-    body: JSON.stringify({ id: id }),
-  }).then((r) => r.json());
+    body: JSON.stringify({ id: id })
+  }).then(r => r.json());
 }
 
 function updateTeamRequest(team) {
   return fetch("http://localhost:3000/teams-json/update", {
     method: "PUT",
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": "application/json"
     },
-    body: JSON.stringify(team),
-  }).then((r) => r.json());
+
+    body: JSON.stringify(team)
+  }).then(r => r.json());
 }
 
 function getFormValues() {
@@ -79,7 +80,7 @@ function getFormValues() {
     promotion: promotion,
     members: members,
     name: name,
-    url: url,
+    url: url
   };
   return team;
 }
@@ -97,14 +98,14 @@ function submitForm(e) {
 
   if (editId) {
     team.id = editId;
-    updateTeamRequest(team).then((status) => {
+    updateTeamRequest(team).then(status => {
       if (status.succes) {
         $("#editForm").reset();
         loadTeams();
       }
     });
   } else {
-    createTeamRequest(team).then((status) => {
+    createTeamRequest(team).then(status => {
       if (status.success) {
         $("#editForm").reset();
         loadTeams();
@@ -114,16 +115,16 @@ function submitForm(e) {
 }
 
 function startEditTeam(id) {
-  const team = allTeams.find((team) => team.id === id);
+  const team = allTeams.find(team => team.id === id);
   setFormValues(team);
   editId = id;
 }
 
 function initEvents() {
-  $("#search").addEventListener("input", (e) => {
+  $("#search").addEventListener("input", e => {
     const search = e.target.value.toLowerCase();
     console.info(search);
-    const teams = allTeams.filter((team) => {
+    const teams = allTeams.filter(team => {
       console.info("filter", team);
       return team.promotion.toLowerCase().includes(search);
     });
@@ -137,10 +138,10 @@ function initEvents() {
     console.warn("reset", reset++);
     editId = undefined;
   });
-  form.querySelector("tbody").addEventListener("click", (e) => {
+  form.querySelector("tbody").addEventListener("click", e => {
     if (e.target.matches("a.delete-btn")) {
       const id = e.target.getAttribute("data-id");
-      removeTeamRequest(id).then((status) => {
+      removeTeamRequest(id).then(status => {
         if (status.succes) {
           loadTeams();
         }
@@ -154,3 +155,4 @@ function initEvents() {
 
 loadTeams();
 initEvents();
+console.warn("yesss");
