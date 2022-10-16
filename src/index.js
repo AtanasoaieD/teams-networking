@@ -155,4 +155,4 @@ function initEvents() {
 
 loadTeams();
 initEvents();
-console.warn("yesss");
+console.warn("yess");
