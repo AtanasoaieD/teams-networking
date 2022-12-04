@@ -11,3 +11,5 @@ This is a CRUD app which allows you to modify data from the table.
 - add  functionalities using JS
 - load data from Node-Api
 - improve design of the page using CSS
+
+![Sample](C:\Products\teams-networking\img\teams.png)
