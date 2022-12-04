@@ -12,4 +12,4 @@ This is a CRUD app which allows you to modify data from the table.
 - load data from Node-Api
 - improve design of the page using CSS
 
-![Sample](C:\Products\teams-networking\img\teams.png)
+![Sample](https://github.com/AtanasoaieD/teams-networking/blob/main/img/teams.png)
