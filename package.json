@@ -1,7 +1,7 @@
 {
   "name": "teams-networking",
   "version": "1.0.0",
-  "description": "teams job related networking\r [live link](https://atanasoaied.github.io/teams-networking/)",
+  "description": "teams job related networking\r [live link](https://atanasoaied.github.io/teams-networking/src`)",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

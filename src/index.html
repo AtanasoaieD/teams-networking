@@ -1,5 +1,6 @@
 <html lang="en">
   <head>
+    <header id ="header">
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,22 +8,24 @@
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Mouse+Memoirs&family=Nunito:ital@1&family=Oswald&family=Poppins:wght@300&family=Roboto+Slab:wght@400;500&family=Roboto:wght@300&display=swap"
-      rel="stylesheet"
-    />
+      rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css ">
 
     <title>Table</title>
     <h1>Teams Networking</h1>
+  </header>
   </head>
   <body>
-    <input type="search" name="search" id="search" />
+    
     <form action="" method="post" id="editForm">
-      <table border="1">
+      <table border="1" >
         <thead id="head">
           <tr>
             <th>Group</th>
             <th>Members</th>
             <th>Project Name</th>
             <th>Project URL</th>
+            <th></th>
           </tr>
         </thead>
 
@@ -32,10 +35,12 @@
         <tfoot>
           <td>
             <input
+            
               type="text"
               placeholder="enter group"
               name="promotion"
               required
+              size="30"
             />
           </td>
           <td>
@@ -44,20 +49,34 @@
               placeholder="enter members"
               name="members"
               required
+              size="30"
             />
           </td>
           <td>
-            <input type="text" placeholder="enter name" name="name" required />
+            <input 
+            type="text" 
+            placeholder="enter name" 
+            name="name" 
+            required 
+            size="30"
+            />
           </td>
           <td>
-            <input type="text" placeholder="enter url" name="url" required />
+            <input type="text" 
+            placeholder="enter url" 
+            name="url" 
+            required
+            size="30" 
+            />
           </td>
           <td>
             <button type="submit">💾</button>
             <button type="reset" title="Reset">🔄</button>
-          </td>
-        </tfoot>
+            </td>
+            
+          </tfoot>
       </table>
+      <input type="search" placeholder="search..." name="search" id="search"   ><i class="fa-solid fa-magnifying-glass"></i>Search</input>
     </form>
     <script src="index.js"></script>
   </body>
