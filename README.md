@@ -5,7 +5,7 @@ teams job related networking
 
 This is a CRUD app which allows you to modify data from the table.
 
-#Stages of the project:
+# Stages of the project:
 - create the structure in HTML
 - Insert data to a json file
 - add  functionalities using JS
