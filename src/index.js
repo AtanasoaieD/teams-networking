@@ -1,3 +1,7 @@
+// import{ $,debounce}from "./utilities"
+// debounce;
+
+
 let allTeams = [];
 let editId;
 
@@ -11,6 +15,8 @@ function getTeamHTML(team) {
     <td>${team.promotion}</td>
     <td>${team.members}</td>
     <td>${team.name}</td>
+    
+
     <td>
       <a href="${team.url}" target="_blank">open</a>
         
@@ -120,17 +126,31 @@ function startEditTeam(id) {
   editId = id;
 }
 
+
+
+
 function initEvents() {
-  $("#search").addEventListener("input", e => {
+  $("#search").addEventListener(
+    "input",(e => {
     const search = e.target.value.toLowerCase();
     console.info(search);
     const teams = allTeams.filter(team => {
       console.info("filter", team);
-      return team.promotion.toLowerCase().includes(search);
+    return (
+      team.promotion.toLowerCase().includes(search) ||
+      team.members.toLowerCase().includes(search) ||
+      team.name.toLowerCase().includes(search) ||
+      team.url.toLowerCase().includes(search)
+
+    )
+      
     });
     console.info(teams);
     displayTeams(teams);
-  });
+  })
+  )
+
+
   const form = $("#editForm");
   form.addEventListener("submit", submitForm);
   form.addEventListener("reset", () => {
